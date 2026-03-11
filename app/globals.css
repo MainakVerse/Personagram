@@ -148,6 +148,23 @@ body::before {
   opacity: 0.4;
 }
 
+/* Preloader */
+@keyframes pgPreloaderSpin  { to { transform: rotate(360deg); } }
+@keyframes pgPreloaderSpinR { to { transform: rotate(-360deg); } }
+@keyframes pgPreloaderPop {
+  0%   { transform: scale(0.6); opacity: 0; }
+  60%  { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+@keyframes pgPreloaderFadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; pointer-events: none; }
+}
+@keyframes pgPreloaderGlow {
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 1; }
+}
+
 /* Animations */
 @keyframes shimmer { to { background-position: 200% center; } }
 @keyframes pgPulse {
@@ -320,13 +337,6 @@ body::before {
   .pg-nav-links { display: none; }
   .pg-nav-signin { display: none !important; }
   .pg-nav-brand-text { display: inline !important; font-size: 0.85rem !important; color: var(--pg-text) !important; }
-  .pg-dark-toggle {
-    position: fixed !important;
-    bottom: 24px;
-    left: 24px;
-    z-index: 999;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15) !important;
-  }
   .pg-hero-cards { grid-template-columns: 1fr; }
   .pg-grid-4 { grid-template-columns: 1fr; }
   .pg-grid-4-20 { grid-template-columns: 1fr; }

@@ -94,8 +94,70 @@ export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
   const warp = useWarpGrid(heroRef);
 
+  const [preloader, setPreloader] = useState(true);
+  const [preloaderFading, setPreloaderFading] = useState(false);
+  useEffect(() => {
+    const t1 = setTimeout(() => setPreloaderFading(true), 1800);
+    const t2 = setTimeout(() => setPreloader(false), 2350);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, []);
+
   return (
     <div style={{ background:'var(--pg-bg)', color:'var(--pg-text)', minHeight:'100vh' }}>
+
+      {/* PRELOADER */}
+      {preloader && (
+        <div style={{
+          position:'fixed', inset:0, zIndex:99999,
+          background: dark ? '#0A0B14' : '#F7F9FC',
+          display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:24,
+          animation: preloaderFading ? 'pgPreloaderFadeOut 0.5s ease forwards' : 'none',
+        }}>
+          {/* Ambient glow blob */}
+          <div style={{ position:'absolute', width:260, height:260, borderRadius:'50%', background: dark ? 'radial-gradient(circle,rgba(108,99,255,0.3) 0%,rgba(0,191,166,0.12) 50%,transparent 70%)' : 'radial-gradient(circle,rgba(108,99,255,0.15) 0%,rgba(0,191,166,0.06) 50%,transparent 70%)', animation:'pgPreloaderGlow 2s ease-in-out infinite', pointerEvents:'none' }} />
+
+          {/* Ring stage — 140×140 container; each ring is a div that rotates, SVG sits inside centered */}
+          <div style={{ position:'relative', width:140, height:140, display:'flex', alignItems:'center', justifyContent:'center' }}>
+
+            {/* Ring 1 — purple arc, clockwise fast */}
+            <div style={{ position:'absolute', width:140, height:140, display:'flex', alignItems:'center', justifyContent:'center', animation:'pgPreloaderSpin 1.4s linear infinite' }}>
+              <svg viewBox="0 0 140 140" width="140" height="140" style={{ filter:`drop-shadow(0 0 7px rgba(108,99,255,${dark ? '1' : '0.7'}))`, overflow:'visible' }}>
+                <circle cx="70" cy="70" r="64" fill="none" stroke="#6C63FF" strokeWidth="2.5" strokeDasharray="90 312" strokeLinecap="round" />
+                <circle cx="70" cy="70" r="64" fill="none" stroke="#8B84FF" strokeWidth="1.2" strokeDasharray="22 380" strokeLinecap="round" strokeDashoffset="-140" opacity="0.55" />
+              </svg>
+            </div>
+
+            {/* Ring 2 — teal arc, counter-clockwise medium */}
+            <div style={{ position:'absolute', width:114, height:114, display:'flex', alignItems:'center', justifyContent:'center', animation:'pgPreloaderSpinR 2s linear infinite' }}>
+              <svg viewBox="0 0 114 114" width="114" height="114" style={{ filter:`drop-shadow(0 0 6px rgba(0,191,166,${dark ? '1' : '0.7'}))`, overflow:'visible' }}>
+                <circle cx="57" cy="57" r="51" fill="none" stroke="#00BFA6" strokeWidth="2" strokeDasharray="65 256" strokeLinecap="round" />
+                <circle cx="57" cy="57" r="51" fill="none" stroke="#00D4B8" strokeWidth="1" strokeDasharray="18 303" strokeLinecap="round" strokeDashoffset="-100" opacity="0.45" />
+              </svg>
+            </div>
+
+            {/* Ring 3 — pink arc, clockwise slow */}
+            <div style={{ position:'absolute', width:88, height:88, display:'flex', alignItems:'center', justifyContent:'center', animation:'pgPreloaderSpin 3s linear infinite' }}>
+              <svg viewBox="0 0 88 88" width="88" height="88" style={{ filter:`drop-shadow(0 0 5px rgba(255,101,132,${dark ? '0.9' : '0.6'}))`, overflow:'visible' }}>
+                <circle cx="44" cy="44" r="38" fill="none" stroke="#FF6584" strokeWidth="1.8" strokeDasharray="35 204" strokeLinecap="round" />
+              </svg>
+            </div>
+
+            {/* Logo */}
+            <Image
+              src="/favicon.png"
+              alt="Personagram"
+              width={50}
+              height={50}
+              style={{ borderRadius:13, animation:'pgPreloaderPop 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.15s both', position:'relative', zIndex:2, boxShadow: dark ? '0 0 24px rgba(108,99,255,0.5)' : '0 4px 20px rgba(108,99,255,0.25)' }}
+            />
+          </div>
+
+          {/* Brand name */}
+          <div style={{ fontFamily:'var(--font-sora,Sora,sans-serif)', fontWeight:700, fontSize:'1.05rem', color: dark ? 'rgba(255,255,255,0.75)' : 'rgba(31,41,55,0.7)', letterSpacing:'0.04em', animation:'pgPreloaderPop 0.5s ease 0.3s both' }}>
+            Personagram
+          </div>
+        </div>
+      )}
 
       {/* NAVBAR */}
       <nav style={{ position:'fixed', top:16, left:'50%', transform:'translateX(-50%)', width:'calc(100% - 48px)', maxWidth:1100, background: dark ? 'rgba(22,24,38,0.85)' : 'rgba(255,255,255,0.85)', backdropFilter:'blur(20px)', WebkitBackdropFilter:'blur(20px)', border:'1px solid var(--pg-border)', borderRadius:100, padding:'12px 24px', display:'flex', alignItems:'center', justifyContent:'space-between', zIndex:1000, boxShadow:'0 4px 24px rgba(108,99,255,0.1)', transition:'all 0.3s' }}>
@@ -109,8 +171,8 @@ export default function Home() {
           ))}
         </ul>
         <div className="pg-nav-actions">
-          <button onClick={() => setDark(!dark)} title="Toggle dark mode" className="pg-dark-toggle" style={{ width:36, height:36, borderRadius:'50%', border:'1px solid var(--pg-border)', background:'var(--pg-surface)', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', fontSize:16, color:'var(--pg-text)', flexShrink:0 }}>{dark ? '☀️' : '🌙'}</button>
           <a href="#" className="pg-nav-signin" style={{ display:'inline-flex', alignItems:'center', padding:'8px 18px', borderRadius:100, fontFamily:'var(--font-sora,Sora,sans-serif)', fontSize:'0.82rem', fontWeight:600, textDecoration:'none', background:'var(--pg-surface)', color:'var(--pg-text)', border:'1px solid var(--pg-border)' }}>Sign In</a>
+          <button onClick={() => setDark(!dark)} title="Toggle dark mode" className="pg-dark-toggle" style={{ width:36, height:36, borderRadius:'50%', border:'1px solid var(--pg-border)', background:'var(--pg-surface)', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', fontSize:16, color:'var(--pg-text)', flexShrink:0 }}>{dark ? '☀️' : '🌙'}</button>
           <a href="#" style={{ display:'inline-flex', alignItems:'center', padding:'8px 18px', borderRadius:100, fontFamily:'var(--font-sora,Sora,sans-serif)', fontSize:'0.82rem', fontWeight:600, textDecoration:'none', background:'linear-gradient(135deg,#6C63FF,#8B84FF)', color:'white', boxShadow:'0 4px 16px rgba(108,99,255,0.35)', whiteSpace:'nowrap' }}>Get Started</a>
         </div>
       </nav>
