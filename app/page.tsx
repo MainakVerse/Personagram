@@ -143,7 +143,7 @@ export default function Home() {
         <div style={{ maxWidth:1100, margin:'0 auto', position:'relative', zIndex:1, textAlign:'center' }}>
           <div style={{ display:'inline-flex', alignItems:'center', gap:8, background:'linear-gradient(135deg,rgba(108,99,255,0.1),rgba(0,191,166,0.1))', border:'1px solid rgba(108,99,255,0.2)', padding:'8px 18px', borderRadius:100, fontSize:'0.85rem', fontWeight:500, color:'#6C63FF', marginBottom:32, animation:'pgFadeDown 0.8s ease both' }}>
             <span style={{ width:8, height:8, background:'#00BFA6', borderRadius:'50%', animation:'pgPulse 2s infinite', display:'inline-block' }} />
-            Now in Public Beta · 12,000+ Creators Joined
+             · 12,000+ Creators Joined
           </div>
           <h1 style={{ fontSize:'clamp(2.8rem,6vw,5rem)', fontWeight:800, lineHeight:1.2, marginBottom:24, animation:'pgFadeDown 0.8s 0.1s ease both', fontFamily:'var(--font-sora,Sora,sans-serif)' }}>
             Build, Share &amp; Earn<br />
