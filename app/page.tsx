@@ -99,19 +99,19 @@ export default function Home() {
 
       {/* NAVBAR */}
       <nav style={{ position:'fixed', top:16, left:'50%', transform:'translateX(-50%)', width:'calc(100% - 48px)', maxWidth:1100, background: dark ? 'rgba(22,24,38,0.85)' : 'rgba(255,255,255,0.85)', backdropFilter:'blur(20px)', WebkitBackdropFilter:'blur(20px)', border:'1px solid var(--pg-border)', borderRadius:100, padding:'12px 24px', display:'flex', alignItems:'center', justifyContent:'space-between', zIndex:1000, boxShadow:'0 4px 24px rgba(108,99,255,0.1)', transition:'all 0.3s' }}>
-        <a href="#" style={{ display:'flex', alignItems:'center', gap:10, fontFamily:'var(--font-sora,Sora,sans-serif)', fontWeight:700, fontSize:'1.1rem', color:'var(--pg-text)', textDecoration:'none' }}>
-          <Image src="/favicon.png" alt="Personagram logo" width={34} height={34} style={{ borderRadius:10 }} />
-          Personagram
+        <a href="#" style={{ display:'flex', alignItems:'center', gap:8, fontFamily:'var(--font-sora,Sora,sans-serif)', fontWeight:700, fontSize:'1.1rem', color:'var(--pg-text)', textDecoration:'none', flexShrink:0 }}>
+          <Image src="/favicon.png" alt="Personagram logo" width={30} height={30} style={{ borderRadius:8, flexShrink:0 }} />
+          <span className="pg-nav-brand-text">Personagram</span>
         </a>
-        <ul style={{ display:'flex', alignItems:'center', gap:8, listStyle:'none', margin:0, padding:0 }}>
+        <ul className="pg-nav-links">
           {[['Features','#features'],['How it Works','#how-it-works'],['Creators','#creators'],['Pricing','#pricing'],['Leaderboard','#leaderboard']].map(([label, href]) => (
             <li key={label}><a href={href} style={{ textDecoration:'none', color:'var(--pg-text-muted)', fontSize:'0.875rem', fontWeight:500, padding:'8px 14px', borderRadius:100, transition:'all 0.2s' }}>{label}</a></li>
           ))}
         </ul>
-        <div style={{ display:'flex', alignItems:'center', gap:10 }}>
-          <button onClick={() => setDark(!dark)} title="Toggle dark mode" style={{ width:36, height:36, borderRadius:'50%', border:'1px solid var(--pg-border)', background:'var(--pg-surface)', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', fontSize:16, color:'var(--pg-text)' }}>{dark ? '☀️' : '🌙'}</button>
-          <a href="#" style={{ display:'inline-flex', alignItems:'center', padding:'8px 18px', borderRadius:100, fontFamily:'var(--font-sora,Sora,sans-serif)', fontSize:'0.82rem', fontWeight:600, textDecoration:'none', background:'var(--pg-surface)', color:'var(--pg-text)', border:'1px solid var(--pg-border)' }}>Sign In</a>
-          <a href="#" style={{ display:'inline-flex', alignItems:'center', padding:'8px 18px', borderRadius:100, fontFamily:'var(--font-sora,Sora,sans-serif)', fontSize:'0.82rem', fontWeight:600, textDecoration:'none', background:'linear-gradient(135deg,#6C63FF,#8B84FF)', color:'white', boxShadow:'0 4px 16px rgba(108,99,255,0.35)' }}>Get Started</a>
+        <div className="pg-nav-actions">
+          <button onClick={() => setDark(!dark)} title="Toggle dark mode" className="pg-dark-toggle" style={{ width:36, height:36, borderRadius:'50%', border:'1px solid var(--pg-border)', background:'var(--pg-surface)', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', fontSize:16, color:'var(--pg-text)', flexShrink:0 }}>{dark ? '☀️' : '🌙'}</button>
+          <a href="#" className="pg-nav-signin" style={{ display:'inline-flex', alignItems:'center', padding:'8px 18px', borderRadius:100, fontFamily:'var(--font-sora,Sora,sans-serif)', fontSize:'0.82rem', fontWeight:600, textDecoration:'none', background:'var(--pg-surface)', color:'var(--pg-text)', border:'1px solid var(--pg-border)' }}>Sign In</a>
+          <a href="#" style={{ display:'inline-flex', alignItems:'center', padding:'8px 18px', borderRadius:100, fontFamily:'var(--font-sora,Sora,sans-serif)', fontSize:'0.82rem', fontWeight:600, textDecoration:'none', background:'linear-gradient(135deg,#6C63FF,#8B84FF)', color:'white', boxShadow:'0 4px 16px rgba(108,99,255,0.35)', whiteSpace:'nowrap' }}>Get Started</a>
         </div>
       </nav>
 
@@ -147,11 +147,11 @@ export default function Home() {
           </div>
           <h1 style={{ fontSize:'clamp(2.8rem,6vw,5rem)', fontWeight:800, lineHeight:1.2, marginBottom:24, animation:'pgFadeDown 0.8s 0.1s ease both', fontFamily:'var(--font-sora,Sora,sans-serif)' }}>
             Build, Share &amp; Earn<br />
-            <span style={{ display:'inline-flex', alignItems:'center', whiteSpace:'nowrap' }}>
+            <span className="pg-hero-line2" style={{ display:'inline-flex', alignItems:'center', whiteSpace:'nowrap' }}>
               From Your&nbsp;
               <span
                 key={wordIdx}
-                className="pg-gradient-text"
+                className="pg-gradient-text pg-hero-cycle-word"
                 style={{ display:'inline-block', minWidth:'200px', textAlign:'left', animation:`pgWordBlink ${CYCLE_MS}ms cubic-bezier(0.4,0,0.2,1) both` }}
               >
                 {CYCLE_WORDS[wordIdx]}
@@ -161,9 +161,9 @@ export default function Home() {
           <p style={{ fontSize:'clamp(1rem,2vw,1.2rem)', color:'var(--pg-text-muted)', maxWidth:580, margin:'0 auto 40px', lineHeight:1.7, animation:'pgFadeDown 0.8s 0.2s ease both' }}>
             Personagram is the marketplace and community for powerful AI prompts, personas, and agent workflows — designed for creators who think in systems.
           </p>
-          <div style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap', marginBottom:64, animation:'pgFadeDown 0.8s 0.3s ease both' }}>
-            <a href="#" style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'16px 36px', borderRadius:100, fontFamily:'var(--font-sora,Sora,sans-serif)', fontSize:'1.05rem', fontWeight:600, textDecoration:'none', background:'linear-gradient(135deg,#6C63FF,#8B84FF)', color:'white', boxShadow:'0 4px 16px rgba(108,99,255,0.35)' }}>🔍 Explore Prompts</a>
-            <a href="#" style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'16px 36px', borderRadius:100, fontFamily:'var(--font-sora,Sora,sans-serif)', fontSize:'1.05rem', fontWeight:600, textDecoration:'none', background:'var(--pg-surface)', color:'var(--pg-text)', border:'1px solid var(--pg-border)' }}>✦ Start Creating</a>
+          <div className="pg-hero-ctas" style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap', marginBottom:64, animation:'pgFadeDown 0.8s 0.3s ease both' }}>
+            <a href="#" style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'16px 36px', borderRadius:100, fontFamily:'var(--font-sora,Sora,sans-serif)', fontSize:'1.05rem', fontWeight:600, textDecoration:'none', background:'linear-gradient(135deg,#6C63FF,#8B84FF)', color:'white', boxShadow:'0 4px 16px rgba(108,99,255,0.35)', whiteSpace:'nowrap' }}>🔍 Explore Prompts</a>
+            <a href="#" style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'16px 36px', borderRadius:100, fontFamily:'var(--font-sora,Sora,sans-serif)', fontSize:'1.05rem', fontWeight:600, textDecoration:'none', background:'var(--pg-surface)', color:'var(--pg-text)', border:'1px solid var(--pg-border)', whiteSpace:'nowrap' }}>✦ Start Creating</a>
           </div>
           <div style={{ display:'flex', gap:40, justifyContent:'center', flexWrap:'wrap', marginBottom:64, animation:'pgFadeDown 0.8s 0.4s ease both' }}>
             {[['48K+','AI Prompts & Personas'],['12K+','Active Creators'],['$2.4M','Creator Earnings'],['180+','Countries Reached']].map(([n, l]) => (
@@ -177,7 +177,7 @@ export default function Home() {
           <div style={{ position:'relative', maxWidth:900, margin:'0 auto', animation:'pgFadeUp 1s 0.5s ease both' }}>
             <div style={{ background:'var(--pg-surface)', border:'1px solid var(--pg-border)', borderRadius:32, padding:24, boxShadow:'0 20px 60px rgba(108,99,255,0.18)', position:'relative', overflow:'hidden' }}>
               <div className="pg-shimmer-bar" />
-              <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:16 }}>
+              <div className="pg-hero-cards">
                 {promptCards.map((c) => (
                   <div key={c.title}
                     onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform='translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow='0 8px 32px rgba(108,99,255,0.12)'; (e.currentTarget as HTMLElement).style.borderColor='rgba(108,99,255,0.3)'; }}
@@ -209,7 +209,7 @@ export default function Home() {
             <h2 style={{ fontSize:'clamp(2rem,4vw,3rem)', fontWeight:800, marginBottom:16, fontFamily:'var(--font-sora,Sora,sans-serif)' }}>AI is Powerful —<br />But Great Prompts Are <span className="pg-gradient-text">Hard to Find</span></h2>
             <p style={{ fontSize:'1.1rem', color:'var(--pg-text-muted)', maxWidth:560, margin:'0 auto', lineHeight:1.7 }}>The gap between AI&apos;s potential and what most people get from it comes down to one thing: prompts.</p>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:24 }}>
+          <div className="pg-grid-4">
             {[
               { icon:'🗂️', title:'Scattered Resources', desc:"Great prompts are buried in Reddit threads, Discord servers, and random Notion docs. There's no centralized, trusted source." },
               { icon:'💸', title:'No Way to Monetize', desc:'Prompt engineers spend hundreds of hours perfecting their craft but have no real marketplace to sell their work.' },
@@ -237,7 +237,7 @@ export default function Home() {
             <h2 style={{ fontSize:'clamp(2rem,4vw,3rem)', fontWeight:800, marginBottom:16, fontFamily:'var(--font-sora,Sora,sans-serif)' }}>Personagram <span className="pg-gradient-text">Solves This</span></h2>
             <p style={{ fontSize:'1.1rem', color:'var(--pg-text-muted)', maxWidth:560, margin:'0 auto', lineHeight:1.7 }}>One platform where the best AI minds create, share, and monetize — and everyone benefits.</p>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(2,1fr)', gap:20 }}>
+          <div className="pg-grid-2">
             {[
               { icon:'🛍️', title:'Prompt Marketplace', desc:'A curated, searchable marketplace for AI prompts across every domain — coding, marketing, education, creative writing. Every listing is rated, reviewed, and tested.' },
               { icon:'🧬', title:'AI Persona Sharing', desc:'Build and share complete AI personas — not just prompts, but full character sheets with system instructions, tone, style, and knowledge domains. Clone, remix, and evolve.' },
@@ -268,7 +268,7 @@ export default function Home() {
           {/* Steps: icon row + cards below */}
           <div style={{ position:'relative' }}>
             {/* Icon + number row */}
-            <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:20, marginBottom:0 }}>
+            <div className="pg-grid-4-20" style={{ marginBottom:0 }}>
               {[
                 { n:'1', icon:'✍️', title:'Create', desc:'Craft your AI prompts, build detailed personas, or design full agent workflows using our guided editor.' },
                 { n:'2', icon:'🚀', title:'Publish', desc:'List your creation on the marketplace. Set your price, write a description, and add tags for discovery.' },
@@ -281,7 +281,7 @@ export default function Home() {
 
                   {/* Connector line segment — spans the gap between badges */}
                   {idx < 3 && (
-                    <div style={{ position:'absolute', top:16, left:'50%', right:'-50%', width:'100%', height:2, zIndex:1, overflow:'hidden', marginLeft:16 }}>
+                    <div className="pg-step-connector" style={{ position:'absolute', top:16, left:'50%', right:'-50%', width:'100%', height:2, zIndex:1, overflow:'hidden', marginLeft:16 }}>
                       {/* base track */}
                       <div style={{ position:'absolute', inset:0, background:'linear-gradient(90deg,rgba(108,99,255,0.25),rgba(0,191,166,0.25))' }} />
                       {/* animated glow pulse */}
@@ -312,7 +312,7 @@ export default function Home() {
             <SectionLabel>🔧 Core Features</SectionLabel>
             <h2 style={{ fontSize:'clamp(2rem,4vw,3rem)', fontWeight:800, marginBottom:16, fontFamily:'var(--font-sora,Sora,sans-serif)' }}>Everything You Need to<br /><span className="pg-gradient-text">Build & Earn</span></h2>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:20 }}>
+          <div className="pg-grid-3">
             {[
               { icon:'🛍️', bg:'rgba(108,99,255,0.12)', title:'Prompt & Persona Marketplace', desc:'Browse thousands of curated, rated prompts and AI personas across every domain and use case.' },
               { icon:'🧪', bg:'rgba(0,191,166,0.12)', title:'AI Playground', desc:'Test any prompt or persona instantly in the browser — no API keys or setup required.' },
@@ -336,7 +336,7 @@ export default function Home() {
 
       {/* CREATOR ECONOMY */}
       <section id="creators" style={{ padding:'100px 24px', background:'var(--pg-surface)' }}>
-        <div style={{ maxWidth:1100, margin:'0 auto', display:'grid', gridTemplateColumns:'1fr 1fr', gap:60, alignItems:'center' }}>
+        <div className="pg-grid-creator" style={{ maxWidth:1100, margin:'0 auto' }}>
           <div className="reveal">
             <SectionLabel>💰 Creator Economy</SectionLabel>
             <h2 style={{ fontSize:'clamp(2rem,4vw,3rem)', fontWeight:800, marginBottom:16, fontFamily:'var(--font-sora,Sora,sans-serif)' }}>Turn Your AI Skills<br /><span className="pg-gradient-text">Into Income</span></h2>
@@ -409,7 +409,7 @@ export default function Home() {
             <h2 style={{ fontSize:'clamp(2rem,4vw,3rem)', fontWeight:800, marginBottom:16, fontFamily:'var(--font-sora,Sora,sans-serif)' }}>Simple, <span className="pg-gradient-text">Transparent Pricing</span></h2>
             <p style={{ fontSize:'1.1rem', color:'var(--pg-text-muted)', maxWidth:560, margin:'0 auto', lineHeight:1.7 }}>Start free, scale when you&apos;re ready.</p>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:20, alignItems:'start' }}>
+          <div className="pg-grid-pricing">
             {[
               { plan:'Free', amount:'$0', period:'/mo', alt:'Forever free', desc:'Get started exploring the platform.', featured:false, badge:null as string|null, features:['Browse all prompts & personas','AI Playground (10 tests/day)','Like, bookmark & share','Purchase prompts & packs','Basic profile page'] },
               { plan:'Creator', amount:'$12', period:'/mo', alt:'or $99/year (save 30%)', desc:'For serious prompt engineers who want to earn.', featured:true, badge:'Most Popular', features:['Everything in Free','Sell unlimited prompts','Creator analytics dashboard','Leaderboard eligibility','Set your own prices','Subscription prompt libraries','Priority support'] },
@@ -451,7 +451,7 @@ export default function Home() {
             <h2 style={{ fontSize:'clamp(2rem,4vw,3rem)', fontWeight:800, marginBottom:16, fontFamily:'var(--font-sora,Sora,sans-serif)' }}>The <span className="pg-gradient-text">Top Creators</span></h2>
             <p style={{ fontSize:'1.1rem', color:'var(--pg-text-muted)', maxWidth:560, margin:'0 auto', lineHeight:1.7 }}>Compete, rise, and earn recognition in the Personagram creator community.</p>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:32 }}>
+          <div className="pg-grid-2-32">
             <div className="reveal" style={{ background:'var(--pg-bg)', border:'1px solid var(--pg-border)', borderRadius:32, padding:28, boxShadow:'0 2px 8px rgba(108,99,255,0.08)' }}>
               <div style={{ fontFamily:'var(--font-sora,Sora,sans-serif)', fontSize:'0.95rem', fontWeight:700, marginBottom:20 }}>🏆 Top Creators This Month</div>
               {[
@@ -503,7 +503,7 @@ export default function Home() {
             <h2 style={{ fontSize:'clamp(2rem,4vw,3rem)', fontWeight:800, marginBottom:16, fontFamily:'var(--font-sora,Sora,sans-serif)' }}>Loved by <span className="pg-gradient-text">Creators</span></h2>
             <p style={{ fontSize:'1.1rem', color:'var(--pg-text-muted)', maxWidth:560, margin:'0 auto', lineHeight:1.7 }}>See what creators are saying about Personagram.</p>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(2,1fr)', gap:20 }}>
+          <div className="pg-grid-2">
             {[
               { avatar:'👨‍💼', grad:'linear-gradient(135deg,#6C63FF,#9B94FF)', name:'Alex Chen', role:'Prompt Engineer · @alexdev', text:'Personagram completely changed how I think about monetizing my AI expertise. I went from giving prompts away for free to earning over $8K last month. The marketplace is incredible.' },
               { avatar:'👩‍🎨', grad:'linear-gradient(135deg,#FF6584,#FF8FA3)', name:'Lumina K.', role:'Creative AI Artist · @lumina', text:'The playground feature is a game-changer. Buyers can test my prompts before purchasing, which builds trust and converts so much better than just showing screenshots.' },
@@ -547,7 +547,7 @@ export default function Home() {
       {/* FOOTER */}
       <footer style={{ background:'var(--pg-surface)', borderTop:'1px solid var(--pg-border)', padding:'60px 24px 32px' }}>
         <div style={{ maxWidth:1100, margin:'0 auto' }}>
-          <div style={{ display:'grid', gridTemplateColumns:'2fr 1fr 1fr 1fr', gap:40, marginBottom:48 }}>
+          <div className="pg-grid-footer">
             <div>
               <a href="#" style={{ display:'flex', alignItems:'center', gap:10, fontFamily:'var(--font-sora,Sora,sans-serif)', fontWeight:700, fontSize:'1.1rem', color:'var(--pg-text)', textDecoration:'none', marginBottom:12 }}>
                 <Image src="/favicon.png" alt="Personagram logo" width={34} height={34} style={{ borderRadius:10 }} />
@@ -582,15 +582,6 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* STICKY CTA */}
-      <div style={{ position:'fixed', bottom:24, right:24, zIndex:999 }}>
-        <button
-          onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.transform='translateY(-3px)'; el.style.boxShadow='0 12px 32px rgba(108,99,255,0.5)'; }}
-          onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.transform=''; el.style.boxShadow='0 8px 24px rgba(108,99,255,0.4)'; }}
-          style={{ background:'linear-gradient(135deg,#6C63FF,#00BFA6)', color:'white', border:'none', padding:'12px 20px', borderRadius:100, fontFamily:'var(--font-sora,Sora,sans-serif)', fontSize:'0.85rem', fontWeight:600, cursor:'pointer', boxShadow:'0 8px 24px rgba(108,99,255,0.4)', transition:'all 0.3s', display:'flex', alignItems:'center', gap:8 }}>
-          ✦ Start Creating Free
-        </button>
-      </div>
 
     </div>
   );
