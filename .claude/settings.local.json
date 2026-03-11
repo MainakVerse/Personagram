@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx next:*)"
+      "Bash(npx next:*)",
+      "Bash(npm install:*)",
+      "Bash(node -e \":*)"
     ]
   }
 }

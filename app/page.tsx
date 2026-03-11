@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback } from 'react';
 import Image from 'next/image';
+import { AuthModal } from '@/components/auth-modal';
 
 function useDarkMode() {
   const [dark, setDark] = useState(false);
@@ -89,6 +90,7 @@ const hover = (el: HTMLElement, enter: boolean) => {
 
 export default function Home() {
   const [dark, setDark] = useDarkMode();
+  const [authOpen, setAuthOpen] = useState(false);
   useReveal();
   const wordIdx = useWordCycle();
   const heroRef = useRef<HTMLElement>(null);
@@ -171,9 +173,9 @@ export default function Home() {
           ))}
         </ul>
         <div className="pg-nav-actions">
-          <a href="#" className="pg-nav-signin" style={{ display:'inline-flex', alignItems:'center', padding:'8px 18px', borderRadius:100, fontFamily:'var(--font-sora,Sora,sans-serif)', fontSize:'0.82rem', fontWeight:600, textDecoration:'none', background:'var(--pg-surface)', color:'var(--pg-text)', border:'1px solid var(--pg-border)' }}>Sign In</a>
+          <button onClick={() => setAuthOpen(true)} className="pg-nav-signin" style={{ display:'inline-flex', alignItems:'center', padding:'8px 18px', borderRadius:100, fontFamily:'var(--font-sora,Sora,sans-serif)', fontSize:'0.82rem', fontWeight:600, cursor:'pointer', background:'var(--pg-surface)', color:'var(--pg-text)', border:'1px solid var(--pg-border)' }}>Sign In</button>
           <button onClick={() => setDark(!dark)} title="Toggle dark mode" className="pg-dark-toggle" style={{ width:36, height:36, borderRadius:'50%', border:'1px solid var(--pg-border)', background:'var(--pg-surface)', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', fontSize:16, color:'var(--pg-text)', flexShrink:0 }}>{dark ? '☀️' : '🌙'}</button>
-          <a href="#" style={{ display:'inline-flex', alignItems:'center', padding:'8px 18px', borderRadius:100, fontFamily:'var(--font-sora,Sora,sans-serif)', fontSize:'0.82rem', fontWeight:600, textDecoration:'none', background:'linear-gradient(135deg,#6C63FF,#8B84FF)', color:'white', boxShadow:'0 4px 16px rgba(108,99,255,0.35)', whiteSpace:'nowrap' }}>Get Started</a>
+          <button onClick={() => setAuthOpen(true)} style={{ display:'inline-flex', alignItems:'center', padding:'8px 18px', borderRadius:100, fontFamily:'var(--font-sora,Sora,sans-serif)', fontSize:'0.82rem', fontWeight:600, cursor:'pointer', border:'none', background:'linear-gradient(135deg,#6C63FF,#8B84FF)', color:'white', boxShadow:'0 4px 16px rgba(108,99,255,0.35)', whiteSpace:'nowrap' }}>Get Started</button>
         </div>
       </nav>
 
@@ -645,6 +647,7 @@ export default function Home() {
       </footer>
 
 
+      <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
     </div>
   );
 }
