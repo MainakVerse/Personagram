@@ -9,6 +9,9 @@ const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-dm-sans', weight:
 export const metadata: Metadata = {
   title: 'Personagram – Create Digital Personas and AI Agents',
   description: 'The marketplace and community for powerful AI prompts, personas, and agent workflows.',
+  icons: {
+    icon: '/favicon.png',
+  },
 }
 
 export default function RootLayout({

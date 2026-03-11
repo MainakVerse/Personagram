@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef, useCallback } from 'react';
+import Image from 'next/image';
 
 function useDarkMode() {
   const [dark, setDark] = useState(false);
@@ -99,7 +100,7 @@ export default function Home() {
       {/* NAVBAR */}
       <nav style={{ position:'fixed', top:16, left:'50%', transform:'translateX(-50%)', width:'calc(100% - 48px)', maxWidth:1100, background: dark ? 'rgba(22,24,38,0.85)' : 'rgba(255,255,255,0.85)', backdropFilter:'blur(20px)', WebkitBackdropFilter:'blur(20px)', border:'1px solid var(--pg-border)', borderRadius:100, padding:'12px 24px', display:'flex', alignItems:'center', justifyContent:'space-between', zIndex:1000, boxShadow:'0 4px 24px rgba(108,99,255,0.1)', transition:'all 0.3s' }}>
         <a href="#" style={{ display:'flex', alignItems:'center', gap:10, fontFamily:'var(--font-sora,Sora,sans-serif)', fontWeight:700, fontSize:'1.1rem', color:'var(--pg-text)', textDecoration:'none' }}>
-          <div style={{ width:34, height:34, background:'linear-gradient(135deg,#6C63FF,#00BFA6)', borderRadius:10, display:'flex', alignItems:'center', justifyContent:'center', fontSize:16 }}>✦</div>
+          <Image src="/favicon.png" alt="Personagram logo" width={34} height={34} style={{ borderRadius:10 }} />
           Personagram
         </a>
         <ul style={{ display:'flex', alignItems:'center', gap:8, listStyle:'none', margin:0, padding:0 }}>
@@ -549,7 +550,7 @@ export default function Home() {
           <div style={{ display:'grid', gridTemplateColumns:'2fr 1fr 1fr 1fr', gap:40, marginBottom:48 }}>
             <div>
               <a href="#" style={{ display:'flex', alignItems:'center', gap:10, fontFamily:'var(--font-sora,Sora,sans-serif)', fontWeight:700, fontSize:'1.1rem', color:'var(--pg-text)', textDecoration:'none', marginBottom:12 }}>
-                <div style={{ width:34, height:34, background:'linear-gradient(135deg,#6C63FF,#00BFA6)', borderRadius:10, display:'flex', alignItems:'center', justifyContent:'center', fontSize:16 }}>✦</div>
+                <Image src="/favicon.png" alt="Personagram logo" width={34} height={34} style={{ borderRadius:10 }} />
                 Personagram
               </a>
               <p style={{ fontSize:'0.875rem', color:'var(--pg-text-muted)', lineHeight:1.6, maxWidth:280, marginBottom:20 }}>The marketplace and community for powerful AI prompts, personas, and agent workflows.</p>
